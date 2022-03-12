@@ -2,6 +2,8 @@ from flask import Flask, jsonify, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 import random
 
+from sqlalchemy import column
+
 app = Flask(__name__)
 
 ##Connect to Database
@@ -23,6 +25,9 @@ class Cafe(db.Model):
     has_sockets = db.Column(db.Boolean, nullable=False)
     can_take_calls = db.Column(db.Boolean, nullable=False)
     coffee_price = db.Column(db.String(250), nullable=True)
+    
+    def to_dict(self):
+        return {column.name: getattr(self,column.name) for column in self.__table__.columns}
 
 
 @app.route("/")
@@ -51,8 +56,8 @@ def random_cafe():
 @app.route('/all')
 def all_cafes():
     all_cafes = db.session.query(Cafe).all()
-    print(c.name for c in all_cafes)
-    
+    return jsonify(cafes=[cafe.to_dict() for cafe in all_cafes])
+        
 
 ## HTTP POST - Create Record
 
