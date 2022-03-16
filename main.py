@@ -140,7 +140,25 @@ def update_price(id_cafe):
 
 
 ## HTTP DELETE - Delete Record
-
+@app.route('/reported_closed/<int:id_cafe>', methods=['DELETE'])
+def delete_cafe(id_cafe):
+    apikey= 'Topsecretapikey'
+    api_key_request = request.args.get('api_key')
+    if api_key_request == apikey:
+        cafe_id = db.session.query(Cafe).filter_by(id=id_cafe).first()
+        if cafe_id:
+            db.session.delete(cafe_id)
+            db.session.commit()
+            return jsonify (correct='The Cafe was deleted correctly'),200
+        else:
+            return jsonify(error={
+                'id_incorrect': 'the ID which you input does not exist'
+            })
+    else:
+        return jsonify(error='The API KEY that you input is not correct')
+        
+    
+    
 
 if __name__ == '__main__':
     app.run(debug=True)
