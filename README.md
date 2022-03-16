@@ -1,15 +1,15 @@
-#**Cafe memo**
+# **Cafe memo**
 
-##An Api that you input the features of a Cafe that you've been there.
+## An Api that you input the features of a Cafe that you've been there.
 
 ---
 
 **REQUEST**
 
-##**GET** 
+## GET 
 
 - /all 
-> List all the features of all the Cafes available in the db.
+> List all the features of all the Cafes available in the db. 
 
 - /random
 > List a random Cafe and its features.
@@ -17,23 +17,23 @@
 - /search
 > Search a specific location and show the first Cafe that be equal to the location requested.
 
-##**POST**: 
+## **POST**: 
 
 - /add
 > Create a new Cafe with all the features the cafe has. 
 
-##**PATCH**
-- /update-price/<id>
+## **PATCH**
+- /update-price/id
 > Update the price coffee that matches the id requested.
 
-##**DELETE**
-- /reported_closed/<id>
+## **DELETE**
+- /reported_closed/id
 > Delete the Cafe which id matches with the requested
 *NEED A API KEY TO HAVE THE PERMISSION TO DELETE THE CAFE*
 
 **CREATE A CAFE**
 
-###You need the following data to add another Cafe:
+### You need the following data to add another Cafe:
 
 1. *cafe_name* as the name of the Cafe.
 2. *map_url* as the url where the Cafe is.
