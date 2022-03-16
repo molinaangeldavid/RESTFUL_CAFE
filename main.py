@@ -153,9 +153,9 @@ def delete_cafe(id_cafe):
         else:
             return jsonify(error={
                 'id_incorrect': 'the ID which you input does not exist'
-            })
+            }),404
     else:
-        return jsonify(error='The API KEY that you input is not correct')
+        return jsonify(error='The API KEY that you input is not correct'),403
         
     
     
